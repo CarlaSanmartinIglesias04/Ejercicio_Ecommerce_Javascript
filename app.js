@@ -1,6 +1,6 @@
 
 import express from 'express';
-import router from './productos.js';
+import router from './routes/productos.js';
 
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Ruta principal que devuelve tu HTML
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'views', 'index.html'));
 });
 
 // API
