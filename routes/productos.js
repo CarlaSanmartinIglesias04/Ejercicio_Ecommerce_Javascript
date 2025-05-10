@@ -9,6 +9,7 @@ router.get('/', async (req, res) => {
   const productos = await APIService.obtenerProductos();
   res.json(productos);
 });
+
 //El 201 indica q se creó exitosamente un nuevo recurso
 router.get('/:id', async (req, res) => {
   const producto = await APIService.obtenerProductoPorId(req.params.id);
@@ -30,5 +31,8 @@ router.delete('/:id', async (req, res) => {
   await APIService.eliminarProducto(req.params.id);
   res.status(204).send();
 });
+
+
+
 
 export default router;

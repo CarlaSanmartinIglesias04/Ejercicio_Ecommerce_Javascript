@@ -1,9 +1,7 @@
 
-import fetch from 'node-fetch';
-
 const API_URL = "https://inventario-bhkd.api.codehooks.io/dev/productos";
 const HEADERS = {
-  'x-apikey': '5e46d7f9-9dbc-454b-b38c-348777183597',
+  'x-apikey': process.env.APIKEYECOMMERCE,
   'Content-Type': 'application/json'
 };
 
