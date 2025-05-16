@@ -1,88 +1,91 @@
-body {
-  background-color: #d7dade;
-  margin-bottom: 60px;
+:root {
+  --fondo: #d7dade;
+  --borde: #7b8e9f;
+  --primario: rgb(123, 142, 159);
+  --hover: #4f5b66;
+  --texto-claro: antiquewhite;
 }
 
 * {
-  outline: 1px solid lime;
+  box-sizing: border-box;
+  outline: 1px solid lime; 
 }
 
-.body--login{
-  margin-top: 150px;
-  display: flex;
-  justify-content: center;
-}
-
-.login {
-  display: flex; 
-  flex-direction: column; 
-  align-items: center; 
-  justify-content: center; 
-  padding: 20px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 300px; 
-  text-align: center;
-}
-
-
-.text {
+body {
+  background-color: var(--fondo);
+  padding: 60px;
+  margin: 0;
   font-family: "Crimson Text", serif;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
 
 .text--heading-1 {
   margin-top: 40px;
+  text-align: center;
 }
 
 .text--heading-3 {
   text-decoration: underline;
 }
 
-.product-list {
-  margin-left: 4vw;
-  margin-right: 4vw;
-  margin-top: 60px;
+.layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
-.separator {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.form{
+.form {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr) 200px);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  padding: 10px;
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
 }
+
 
 .form-input {
   padding: 8px 25px;
   border-radius: 5px;
-  border-color: #7b8e9f;
+  border: 1px solid var(--borde);
 }
-
-.form-input--last{
-  margin-right: 40px;
-}
-
 
 .button {
   font-size: medium;
   padding: 8px 25px;
-  color: antiquewhite;
-  background-color: rgb(123, 142, 159);
+  color: var(--texto-claro);
+  background-color: var(--primario);
   border-radius: 5px;
-  border-color: rgb(123, 142, 159);
-  margin-right: 15px;
-  margin-bottom: 20px;
-    &:hover{
-      background-color: #4f5b66;
-    }
+  border: 1px solid var(--primario);
+  margin: 15px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-
-.button--login{
-  margin:0;
+.button:hover {
+  background-color: var(--hover);
 }
 
+.form-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.product-list {
+  margin-top: 60px;
+  width: 100%;
+  max-width: 1000px;
+  padding: 0 20px;
+  text-align: left;
+}
 

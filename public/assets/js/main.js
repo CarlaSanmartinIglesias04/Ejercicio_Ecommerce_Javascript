@@ -1,7 +1,7 @@
 import InventarioApp from './inventarioApp.js';
 
 document.addEventListener("DOMContentLoaded", async () => {
-  // Obtengo idioma desde la URL o el navegador
+  // Obtengo idioma desde la URL, cookie o navegador
   const lang = getLang();
 
   // Cargo archivo JSON con las traducciones
@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   let mostrando = false;
 
   botonMostrar.addEventListener("click", async () => {
-    //Cada vez que se hace click invierto el valor de mostrando 
     mostrando = !mostrando;
 
     if (mostrando) {
@@ -43,16 +42,36 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 });
 
-// Obtengo idioma de la URL o navegador
+// === FUNCIONES DE IDIOMA ===
+
+// Obtengo idioma desde parámetro, cookie o navegador
 function getLang() {
   const params = new URLSearchParams(window.location.search);
   const paramLang = params.get('lang');
+  const cookieLang = getCookie('lang');
   const browserLang = navigator.language?.slice(0, 2).toLowerCase();
-  return paramLang || (['es', 'en'].includes(browserLang) ? browserLang : 'en');
+
+  const lang = paramLang || cookieLang || (['es', 'en'].includes(browserLang) ? browserLang : 'en');
+
+  // Guardo la cookie si viene por parámetro o navegador
+  if (paramLang || !cookieLang) {
+    document.cookie = `lang=${lang}; path=/; max-age=31536000`; // 1 año
+  }
+
+  return lang;
 }
 
+// Leer valor de una cookie por nombre
+function getCookie(nombre) {
+  const cookies = document.cookie.split("; ");
+  for (let cookie of cookies) {
+    const [key, value] = cookie.split("=");
+    if (key === nombre) return value;
+  }
+  return null;
+}
 
-//Creo función para distinguir entre traducciones en inglés y en español 
+// Selecciono traducciones del archivo según el idioma
 function getTraducciones(trads, lang) {
   const traducciones = {};
   for (const key in trads) {

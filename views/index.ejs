@@ -35,17 +35,20 @@
 
 
   <div class="layout layout--centered">
-    <center><h1 class="text text--heading-1"><%= traducciones.title %></h1></center>
-    <center>
+    <h1 class="text text--heading-1"><%= traducciones.title %></h1>
+    
       <div class="form">
-        <input class="form-input" type="text" placeholder="<%= traducciones.name%>" id="nombre">
-        <input class="form-input" type="number" placeholder="<%= traducciones.price %>" id="precio">
-        <input class="form-input" type="number" placeholder="<%= traducciones.quantity %>" id="cantidad">
-        <input class="form-input form-input--last" type="text" placeholder="<%= traducciones.description %>" id="descripcion">
-      </div>
-      
-        <button class="button" id="crear"><%= traducciones.create%></button>
-        <button class="button" id="mostrar"><%= traducciones.display%></button>
+  <input class="form-input" type="text" placeholder="<%= traducciones.name%>" id="nombre">
+  <input class="form-input" type="number" placeholder="<%= traducciones.price %>" id="precio">
+  <input class="form-input" type="number" placeholder="<%= traducciones.quantity %>" id="cantidad">
+  <input class="form-input" type="text" placeholder="<%= traducciones.description %>" id="descripcion">
+</div>
+
+<div class="form-buttons">
+  <button class="button" id="crear"><%= traducciones.create%></button>
+  <button class="button" id="mostrar"><%= traducciones.display%></button>
+</div>
+
 
         <!--
         <% productos.forEach(function(p) { %>
@@ -53,7 +56,6 @@
         <% }); %>  
         -->
 
-    </center>
     <div id="listaProductos" class="product-list"></div>
   </div>
 
