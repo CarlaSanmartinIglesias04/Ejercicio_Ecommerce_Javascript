@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <link rel="stylesheet" href="../assets/css/index.css">
+  <link rel="stylesheet" href="../assets/css/dropdown.css">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,30 +15,49 @@
 </head>
 <body>
 
+
+
+<div class="dropdown">
+  <button class="dropbtn"><%= traducciones.language%></button>
+  <div class="dropdown-content">
+    <a href="/index?lang=es">
+      <img src="../assets/images/Espana.png" alt="Español" class="lang-icon">
+      <%= traducciones.spanish %>
+    </a>
+    <a href="/index?lang=en">
+      <img src="../assets/images/Inglaterra.png" alt="English" class="lang-icon">
+      <%= traducciones.english%>
+    </a>
+  </div>
+</div>
+
+
+
+
   <div class="layout layout--centered">
-    <center><h1 class="text text--heading-1"><%= traducciones.titulo %></h1></center>
+    <center><h1 class="text text--heading-1"><%= traducciones.title %></h1></center>
     <center>
       <div class="form">
-        <input class="form-input" type="text" placeholder="Nombre" id="nombre">
-        <input class="form-input" type="number" placeholder="Precio" id="precio">
-        <input class="form-input" type="number" placeholder="Cantidad" id="cantidad">
-        <input class="form-input form-input--last" type="text" placeholder="Descripción" id="descripcion">
+        <input class="form-input" type="text" placeholder="<%= traducciones.name%>" id="nombre">
+        <input class="form-input" type="number" placeholder="<%= traducciones.price %>" id="precio">
+        <input class="form-input" type="number" placeholder="<%= traducciones.quantity %>" id="cantidad">
+        <input class="form-input form-input--last" type="text" placeholder="<%= traducciones.description %>" id="descripcion">
       </div>
       
-        <button class="button" id="crear">Crear</button>
-        <button class="button" id="mostrar">Mostrar productos</button>
-       <% productos.forEach(function(p) { %>
+        <button class="button" id="crear"><%= traducciones.create%></button>
+        <button class="button" id="mostrar"><%= traducciones.display%></button>
+
+        <!--
+        <% productos.forEach(function(p) { %>
         <%- include('producto', {producto: p}) %>
-      <% }); %>
+        <% }); %>  
+        -->
 
-
-
-
-    
     </center>
     <div id="listaProductos" class="product-list"></div>
   </div>
 
   <script type="module" src="../assets/js/main.js"></script>
+
 </body>
 </html>

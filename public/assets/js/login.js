@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const usuarioGuardado = localStorage.getItem("usuario");
 
   if (usuarioGuardado) {
-    window.location.href = "../GestionInventario/index.html"; 
+    window.location.href = "/index"; 
   }
 
   document.getElementById("btnLogin").addEventListener("click", () => {
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("usuario", usuario);
       
       alert("¡Has iniciado sesión con éxito!")
-      window.location.href = "index.html"; 
+      window.location.href = "/index"; 
     } else {
       alert("Por favor, completa todos los campos.");
     }

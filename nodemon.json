@@ -2,6 +2,7 @@
   "verbose": true,
   "watch":["public","routes","apiService.js","app.js"],
   "ignore": ["node_modules"],
-  "exec":"npm run start",
-  "signal":"SIGNIT"
+  "exec": "node app.js",
+  "signal": "SIGINT"
+
 }
