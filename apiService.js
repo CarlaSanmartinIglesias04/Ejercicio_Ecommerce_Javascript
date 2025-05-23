@@ -1,3 +1,4 @@
+import 'dotenv/config';
 
 const API_URL = "https://inventario-bhkd.api.codehooks.io/dev/productos";
 const HEADERS = {

@@ -1,26 +1,25 @@
+document.getElementById("btnLogin").addEventListener("click", async () => {
+  const usuario = document.getElementById("usuario").value.trim();
+  const clave = document.getElementById("clave").value.trim();
 
-document.addEventListener("DOMContentLoaded", () => {
+  if (usuario && clave) {
+    try {
+      const res = await fetch('/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ usuario, clave })
+      });
 
-  const loginDiv = document.getElementById("login");
-
-  const usuarioGuardado = localStorage.getItem("usuario");
-
-  if (usuarioGuardado) {
-    window.location.href = "/index"; 
-  }
-
-  document.getElementById("btnLogin").addEventListener("click", () => {
-    const usuario = document.getElementById("usuario").value.trim();
-    const clave = document.getElementById("clave").value.trim();
-
-    if (usuario && clave) {
-
-      localStorage.setItem("usuario", usuario);
-      
-      alert("¡Has iniciado sesión con éxito!")
-      window.location.href = "/index"; 
-    } else {
-      alert("Por favor, completa todos los campos.");
+      if (res.ok) {
+        alert("¡Has iniciado sesión con éxito!");
+        window.location.href = "/index";
+      } else {
+        alert("Usuario o clave incorrectos.");
+      }
+    } catch (error) {
+      alert("Error al conectar con el servidor.");
     }
-  });
+  } else {
+    alert("Por favor, completa todos los campos.");
+  }
 });

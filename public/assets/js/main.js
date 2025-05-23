@@ -42,7 +42,23 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 });
 
-// === FUNCIONES DE IDIOMA ===
+
+
+// Guardar modal de editar
+document.getElementById("modal-guardar").addEventListener("click", () => {
+  InventarioApp.guardarEdicionDesdeModal();
+});
+
+// Cerrar modal
+document.getElementById("modal-cerrar").addEventListener("click", () => {
+  document.getElementById("modalEditar").classList.add("hidden");
+  InventarioApp.productoEditandoId = null;
+});
+
+
+
+
+// FUNCIONES DE IDIOMA
 
 // Obtengo idioma desde parámetro, cookie o navegador
 function getLang() {

@@ -62,7 +62,16 @@
   "productCreated": "Producto creado con éxito!",
   "productCreated_en": "Product successfully created!",
   "noMoreQuantity": "La cantidad ya es 0. No se puede disminuir más.",
-  "noMoreQuantity_en": "Quantity is already 0. Cannot decrease further."
+  "noMoreQuantity_en": "Quantity is already 0. Cannot decrease further.",
+
+  "editProducts":"Editar productos",
+  "editProducts_en":"Edit products",
+
+  "save":"Guardar",
+  "save_en":"Save",
+
+  "cancel":"Cancelar",
+  "cancel_en":"Cancel"
 
 
 

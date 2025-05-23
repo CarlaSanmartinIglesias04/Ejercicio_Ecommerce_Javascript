@@ -52,8 +52,31 @@ app.get('/', (req, res) => {
   res.render('login');
 });
 
-//  Ruta principal con detección de idioma
-app.get('/index', (req, res) => {
+
+// Middleware para proteger ruta
+function autenticar(req, res, next) {
+  if (req.cookies.user) {
+    next();
+  } else {
+    res.redirect('/');
+  }
+}
+
+app.post('/login', (req, res) => {
+  const { usuario } = req.body;
+
+  if (usuario && usuario.trim() !== "") {
+    //Guardo en cookie el usuario por 1 día
+    res.cookie('user', usuario, { maxAge: 24 * 60 * 60 * 1000 }); 
+    res.status(200).json({ mensaje: "Login correcto" });
+  } else {
+    res.status(400).json({ error: "Faltan datos" });
+  }
+});
+
+
+// Protejo ruta /index
+app.get('/index', autenticar, (req, res) => {
   const langParam = req.query.lang;
   const cookieLang = req.cookies?.lang;
   const browserLang = req.headers['accept-language']?.split(',')[0].slice(0, 2);
@@ -61,7 +84,7 @@ app.get('/index', (req, res) => {
   const lang = langParam || cookieLang || (['es', 'en'].includes(browserLang) ? browserLang : 'en');
 
   if (langParam) {
-    res.cookie('lang', lang, { maxAge: 7 * 24 * 60 * 60 * 1000 }); // Guardar cookie 7 días
+    res.cookie('lang', lang, { maxAge: 7 * 24 * 60 * 60 * 1000 });
   }
 
   const traducciones = traducir(textos, lang);
@@ -72,10 +95,11 @@ app.get('/index', (req, res) => {
   });
 });
 
+
 //  API de productos
 app.use('/productos', router);
 
 //  Iniciar servidor
-app.listen(3000, () => {
-  console.log('Servidor corriendo en http://localhost:3000');
+app.listen(80, () => {
+  console.log('Servidor corriendo en http://localhost:80');
 });

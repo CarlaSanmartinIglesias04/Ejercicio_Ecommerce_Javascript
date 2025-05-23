@@ -101,17 +101,53 @@ export default class InventarioApp {
     this.listaProductos();
   }
 
-  static async editarProducto(id) {
-    const producto = await APIService.obtenerProductoPorId(id);
+static async editarProducto(id) {
+  const producto = await APIService.obtenerProductoPorId(id);
 
-    document.getElementById("nombre").value = producto.name;
-    document.getElementById("precio").value = producto.price;
-    document.getElementById("cantidad").value = producto.quantity;
-    document.getElementById("descripcion").value = producto.description;
+  document.getElementById("modal-nombre").value = producto.name;
+  document.getElementById("modal-precio").value = producto.price;
+  document.getElementById("modal-cantidad").value = producto.quantity;
+  document.getElementById("modal-descripcion").value = producto.description;
 
-    this.productoEditandoId = id;
-    document.getElementById("crear").textContent = this.traducciones.update || "Actualizar";
+  this.productoEditandoId = id;
+
+  document.getElementById("modalEditar").classList.remove("hidden");
+}
+
+static async guardarEdicionDesdeModal() {
+  if (!this.productoEditandoId) {
+    alert(this.traducciones.noProductSelected || "No se ha seleccionado un producto para editar.");
+    return;
   }
+
+  const productoActualizado = {
+    name: Utils.sanitizeInput(document.getElementById("modal-nombre").value),
+    price: parseFloat(document.getElementById("modal-precio").value),
+    quantity: parseInt(document.getElementById("modal-cantidad").value),
+    description: Utils.sanitizeInput(document.getElementById("modal-descripcion").value)
+  };
+
+  if (!Utils.isSafeInput(productoActualizado.name) || !Utils.isSafeInput(productoActualizado.description)) {
+    alert(this.traducciones.specialCharsWarning || "Por favor, evita caracteres especiales en el nombre o descripción.");
+    return;
+  }
+
+  if (productoActualizado.price <= 0 || productoActualizado.quantity < 0) {
+    alert(this.traducciones.invalidValues || "El precio y la cantidad deben ser números positivos.");
+    return;
+  }
+
+  await APIService.actualizarProducto(this.productoEditandoId, productoActualizado);
+  alert(this.traducciones.productUpdated || "Producto actualizado con éxito!");
+
+  // Ocultar modal
+  document.getElementById("modalEditar").classList.add("hidden");
+
+  // Limpiar ID y recargar productos
+  this.productoEditandoId = null;
+  this.listaProductos();
+}
+
 
   static async entradaProducto(id) {
     const producto = await APIService.obtenerProductoPorId(id);

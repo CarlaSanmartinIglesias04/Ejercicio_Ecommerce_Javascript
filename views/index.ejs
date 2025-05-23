@@ -50,14 +50,23 @@
 </div>
 
 
-        <!--
-        <% productos.forEach(function(p) { %>
-        <%- include('producto', {producto: p}) %>
-        <% }); %>  
-        -->
-
     <div id="listaProductos" class="product-list"></div>
   </div>
+
+
+
+  <div id="modalEditar" class="modal hidden">
+  <div class="modal-content">
+    <h3 class="text text--heading-3" id="modal-titulo"><%= traducciones.editProducts%></h3>
+    <input class="form-input" type="text" id="modal-nombre" placeholder="Nombre">
+    <input class="form-input" type="number" id="modal-precio" placeholder="Precio">
+    <input class="form-input" type="number" id="modal-cantidad" placeholder="Cantidad">
+    <input class="form-input" type="text" id="modal-descripcion" placeholder="Descripción">
+    <button class="button" id="modal-guardar"><%= traducciones.save%></button>
+    <button class="button" id="modal-cerrar"><%= traducciones.cancel%></button>
+  </div>
+</div>
+
 
   <script type="module" src="../assets/js/main.js"></script>
 
