@@ -1,5 +1,5 @@
 const API_URL = "http://localhost/productos";
-const HEADERS = {'Content-Type': 'application/json'}; 
+const HEADERS = {}; 
 
 
 
